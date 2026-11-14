@@ -25,6 +25,7 @@ function Products() {
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
     const [error , setError] = useState("")
+    const [editingId, setEditingId] = useState(null);
 
     const handleDelete = (id)=>{
         setProducts(prev=>
@@ -55,6 +56,36 @@ function Products() {
         setPrice("");
         setQuantity("");
     }
+    const handleEdit = (item)=>{
+        setEditingId(item.id)
+        setName(item.name)
+        setPrice(String(item.price));
+        setQuantity(String(item.quantity));
+    }
+    const saveEditProduct = ()=>{
+        if(name.trim()=== ""){
+            setError("Please enter product name");
+             return}
+        if(Number(price) <= 0 || price === ""){
+            setError("Price must be greater than zero");
+                return}
+        if(quantity === "" || Number(quantity) < 0){
+            setError("Quantity cannot be negative or empty");
+                return}
+        setProducts(prev=>
+            prev.map(item=>(
+                item.id ===editingId
+                ?{...item , name:name.trim() , price:Number(price) , quantity:Number(quantity) }
+                :item
+            ))
+            )
+            setEditingId(null);
+            setName("");
+            setPrice("");
+            setQuantity("");
+            setError("");
+       
+    }
     return (
       <div>
         <h1>Products</h1>
@@ -79,11 +110,18 @@ function Products() {
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
          />
-
-         <button
-          type="submit"
-          
-          >Add Product</button>
+        {editingId 
+        ?<button
+        type="button"
+            onClick={()=>saveEditProduct()}
+        
+        >Edit Product</button>
+        :<button
+        type="submit"
+        
+        >Add Product</button>
+        }
+         
         </form>
         {error && <p>{error}</p>}
         {
@@ -95,6 +133,9 @@ function Products() {
                     <button onClick={()=>{
                         handleDelete(product.id)
                     }}>Delete</button>
+                    <button onClick={()=>{
+                        handleEdit(product)
+                    }}>Edit</button>
                 </div>
             ))
         }
