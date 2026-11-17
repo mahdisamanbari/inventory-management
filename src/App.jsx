@@ -6,6 +6,7 @@ import { Routes, Route, Navigate , NavLink} from "react-router-dom";
 import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
 import ProductDetails from './pages/ProductDetails';
+import Inventory from './pages/Inventory';
 
 function App() {
  
@@ -34,6 +35,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path='/products/:id' element={<ProductDetails/>}/>
+        <Route path='/inventory' element={<Inventory/>}/>
       </Routes>
       </ProductsProvider>
       
