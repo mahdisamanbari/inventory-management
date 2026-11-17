@@ -1,8 +1,11 @@
 
 import './App.css'
+import { ProductsProvider } from "./context/ProductsContext";
 import { Routes, Route, Navigate , NavLink} from "react-router-dom";
+
 import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
  
@@ -25,11 +28,15 @@ function App() {
       </NavLink>
         
       </nav>
-      <Routes>
+      <ProductsProvider>
+        <Routes>
         <Route path='/' element={<Navigate to='/dashboard'/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/products' element={<Products/>}/>
+        <Route path='/products/:id' element={<ProductDetails/>}/>
       </Routes>
+      </ProductsProvider>
+      
     </>
     
       

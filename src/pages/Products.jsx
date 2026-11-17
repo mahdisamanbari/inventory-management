@@ -1,26 +1,12 @@
+import { useContext } from "react";
+import { ProductsContext } from "../context/ProductsContext";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 function Products() {
-    const [products ,setProducts]  = useState([
-        {
-          id: 1,
-          name: "Laptop",
-          price: 1200,
-          quantity: 8,
-        },
-        {
-          id: 2,
-          name: "Mouse",
-          price: 25,
-          quantity: 30,
-        },
-        {
-          id: 3,
-          name: "Keyboard",
-          price: 75,
-          quantity: 0,
-        },
-      ])
+    const { products, setProducts } = useContext(ProductsContext);
+    
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
@@ -30,6 +16,7 @@ function Products() {
     const [stockFilter, setStockFilter] = useState("all");
 
     const handleDelete = (id)=>{
+        console.log("Deleting ID:", id);
         setProducts(prev=>
             prev.filter(item => item.id !== id))
     }  
@@ -106,6 +93,7 @@ function Products() {
       <div>
         <h1>Products</h1>
         <p>Manage your store products here.</p>
+        
         <input
          type="text"
          placeholder="Search products..."
@@ -167,6 +155,9 @@ function Products() {
                     <button onClick={()=>{
                         handleEdit(product)
                     }}>Edit</button>
+                    <Link to={`/products/${product.id}`}>
+                    View Details
+                    </Link>
                 </div>
             ))
         }
