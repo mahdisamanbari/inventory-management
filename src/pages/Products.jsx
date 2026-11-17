@@ -18,7 +18,7 @@ function Products() {
           id: 3,
           name: "Keyboard",
           price: 75,
-          quantity: 12,
+          quantity: 0,
         },
       ])
     const [name, setName] = useState("");
@@ -27,6 +27,7 @@ function Products() {
     const [error , setError] = useState("")
     const [editingId, setEditingId] = useState(null);
     const [search, setSearch] = useState("");
+    const [stockFilter, setStockFilter] = useState("all");
 
     const handleDelete = (id)=>{
         setProducts(prev=>
@@ -90,6 +91,17 @@ function Products() {
     const filteredProducts = products.filter(product =>
         product.name.toLowerCase().includes(search.toLowerCase())
       );
+      const stockFilteredProducts = filteredProducts.filter(product => {
+        if (stockFilter === "in-stock") {
+          return product.quantity > 0;
+        }
+      
+        if (stockFilter === "out-of-stock") {
+          return product.quantity === 0;
+        }
+      
+        return true;
+      });
     return (
       <div>
         <h1>Products</h1>
@@ -100,6 +112,14 @@ function Products() {
          value={search}
          onChange={e=>setSearch(e.target.value)} 
          />
+         <select
+            value={stockFilter}
+            onChange={(e) => setStockFilter(e.target.value)}
+            >
+             <option value="all">All Products</option>
+             <option value="in-stock">In Stock</option>
+             <option value="out-of-stock">Out of Stock</option>
+            </select>
         <form onSubmit={handleAdd}>
         <input
             type="text"
@@ -133,10 +153,10 @@ function Products() {
         }
          
         </form>
-        {!filteredProducts.length && <p> No product found</p>}
+        {!stockFilteredProducts.length && <p> No product found</p>}
         {error && <p>{error}</p>}
         {
-            filteredProducts.map(product=>(
+            stockFilteredProducts.map(product=>(
                 <div key={product.id}>
                     <h2>{product.name}</h2>
                     <p>Price: ${product.price}</p>
