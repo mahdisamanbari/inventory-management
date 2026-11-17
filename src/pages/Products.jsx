@@ -26,6 +26,7 @@ function Products() {
     const [quantity, setQuantity] = useState("");
     const [error , setError] = useState("")
     const [editingId, setEditingId] = useState(null);
+    const [search, setSearch] = useState("");
 
     const handleDelete = (id)=>{
         setProducts(prev=>
@@ -86,10 +87,19 @@ function Products() {
             setError("");
        
     }
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(search.toLowerCase())
+      );
     return (
       <div>
         <h1>Products</h1>
         <p>Manage your store products here.</p>
+        <input
+         type="text"
+         placeholder="Search products..."
+         value={search}
+         onChange={e=>setSearch(e.target.value)} 
+         />
         <form onSubmit={handleAdd}>
         <input
             type="text"
@@ -123,9 +133,10 @@ function Products() {
         }
          
         </form>
+        {!filteredProducts.length && <p> No product found</p>}
         {error && <p>{error}</p>}
         {
-            products.map(product=>(
+            filteredProducts.map(product=>(
                 <div key={product.id}>
                     <h2>{product.name}</h2>
                     <p>Price: ${product.price}</p>
