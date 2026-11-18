@@ -1,27 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { OrdersContext } from "../context/OrdersContext";
 
 
 function Orders() {
-    const [orders , setOrders] = useState([
-        {
-          id: 1,
-          customer: "Ali",
-          total: 250,
-          status: "Pending",
-        },
-        {
-          id: 2,
-          customer: "Sara",
-          total: 480,
-          status: "Shipped",
-        },
-        {
-          id: 3,
-          customer: "Reza",
-          total: 120,
-          status: "Delivered",
-        },
-      ]) 
+    const {orders , setOrders} = useContext(OrdersContext) 
       const[newStatus , setNewStatus]=useState("")
       const [edit , setEdit] = useState(null)
       const [statusFilter , setStatusFilter]=useState("All")

@@ -1,6 +1,6 @@
 
 import './App.css'
-import { ProductsProvider } from "./context/ProductsContext";
+import { ProductsProvider} from "./context/ProductsContext";
 import { Routes, Route, Navigate , NavLink} from "react-router-dom";
 
 import Dashboard from './pages/Dashboard'
@@ -8,6 +8,7 @@ import Products from './pages/Products'
 import ProductDetails from './pages/ProductDetails';
 import Inventory from './pages/Inventory';
 import Orders from './pages/Orders';
+import { OrdersProvider } from './context/OrdersContext';
 
 function App() {
  
@@ -37,6 +38,7 @@ function App() {
         
       </nav>
       <ProductsProvider>
+      <OrdersProvider>
         <Routes>
         <Route path='/' element={<Navigate to='/dashboard'/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
@@ -45,7 +47,9 @@ function App() {
         <Route path='/inventory' element={<Inventory/>}/>
         <Route path='/orders' element={<Orders/>}/>
       </Routes>
+      </OrdersProvider>
       </ProductsProvider>
+      
       
     </>
     
