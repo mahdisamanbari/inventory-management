@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
 import ProductDetails from './pages/ProductDetails';
 import Inventory from './pages/Inventory';
+import Orders from './pages/Orders';
 
 function App() {
  
@@ -27,6 +28,12 @@ function App() {
       >
        Products
       </NavLink>
+      {" | "}
+      <NavLink
+      to="/orders"
+      className={({isActive})=>isActive ? "active" : ""}>
+        Orders
+      </NavLink>
         
       </nav>
       <ProductsProvider>
@@ -36,6 +43,7 @@ function App() {
         <Route path='/products' element={<Products/>}/>
         <Route path='/products/:id' element={<ProductDetails/>}/>
         <Route path='/inventory' element={<Inventory/>}/>
+        <Route path='/orders' element={<Orders/>}/>
       </Routes>
       </ProductsProvider>
       
