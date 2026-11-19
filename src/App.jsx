@@ -1,7 +1,7 @@
 
 import './App.css'
 import { ProductsProvider} from "./context/ProductsContext";
-import { Routes, Route, Navigate , NavLink} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
@@ -9,34 +9,17 @@ import ProductDetails from './pages/ProductDetails';
 import Inventory from './pages/Inventory';
 import Orders from './pages/Orders';
 import { OrdersProvider } from './context/OrdersContext';
+import Sidebar from './components/Sidebar';
 
 function App() {
  
 
   return (
-    <>
-      <nav>
-      <NavLink
-        to="/dashboard"
-        className={({ isActive }) => isActive ? "active" : ""}
-      >
-       Dashboard
-      </NavLink>
-        {" | "}
-        <NavLink
-        to="/products"
-        className={({ isActive }) => isActive ? "active" : ""}
-      >
-       Products
-      </NavLink>
-      {" | "}
-      <NavLink
-      to="/orders"
-      className={({isActive})=>isActive ? "active" : ""}>
-        Orders
-      </NavLink>
-        
-      </nav>
+    <div className='wrapper'>
+    <div className='sidebar'>
+      <Sidebar/>
+    </div>
+    <main className='main'>
       <ProductsProvider>
       <OrdersProvider>
         <Routes>
@@ -49,9 +32,11 @@ function App() {
       </Routes>
       </OrdersProvider>
       </ProductsProvider>
+    </main>
       
       
-    </>
+      
+    </div>
     
       
   )
