@@ -9,18 +9,21 @@ export function OrdersProvider ({children}){
           customer: "Ali",
           total: 250,
           status: "Pending",
+          date: "2026-09-12" 
         },
         {
           id: 2,
           customer: "Sara",
           total: 480,
           status: "Shipped",
+          date: "2026-10-08"
         },
         {
           id: 3,
           customer: "Reza",
           total: 120,
           status: "Delivered",
+          date: "2026-11-15"
         },
       ])
       return(
