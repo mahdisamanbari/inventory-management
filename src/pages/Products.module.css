@@ -1,0 +1,184 @@
+
+.productsPage {
+    width: 100%;
+  }
+  
+  .pageHeader {
+    margin-bottom: 28px;
+  }
+  
+  .pageHeader h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+  }
+  
+  .pageHeader p {
+    font-size: 14px;
+    color: #64748b;
+  }
+  .productsToolbar {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .productsToolbar input,
+  .productsToolbar select {
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+  }
+  
+  .productsToolbar input {
+    flex: 1;
+  }
+  
+  .productsToolbar select {
+    min-width: 160px;
+  }
+  
+  .productsToolbar input:focus,
+  .productsToolbar select:focus {
+    outline: none;
+    border-color: #3b82f6;
+  }
+  .formCard {
+    background-color: white;
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  .formCard h2 {
+    font-size: 18px;
+    color: #1e293b;
+    margin-bottom: 18px;
+  }
+  
+  .formCard form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .formCard input {
+    flex: 1;
+    min-width: 160px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  .formCard input:focus {
+    outline: none;
+    border-color: #3b82f6;
+  }
+  
+  .formCard button {
+    padding: 12px 20px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .formCard button:hover {
+    background-color: #1d4ed8;
+  }
+  .productCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    padding: 20px 24px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  .productInfo h2 {
+    font-size: 17px;
+    color: #1e293b;
+    margin-bottom: 10px;
+  }
+  
+  .productInfo p {
+    font-size: 14px;
+    color: #64748b;
+    margin-top: 6px;
+  }
+  
+  .productActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .productActions button,
+  .productActions a {
+    padding: 9px 14px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .productActions button {
+    border: none;
+    color: white;
+  }
+  
+  .productActions button:first-child {
+    background-color: #dc2626;
+  }
+  
+  .productActions button:nth-child(2) {
+    background-color: #2563eb;
+  }
+  
+  .productActions a {
+    color: #2563eb;
+    background-color: #eff6ff;
+  }
+  .emptyMessage {
+    text-align: center;
+    padding: 32px;
+    background-color: white;
+    border-radius: 12px;
+    color: #64748b;
+    font-size: 14px;
+  }
+  
+  .errorMessage {
+    color: #dc2626;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  @media (max-width: 600px) {
+    .productsToolbar {
+        flex-direction: column;
+      }
+    .productCard {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  
+    .productActions {
+      flex-wrap: wrap;
+    }
+  }
+  
