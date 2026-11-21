@@ -1,6 +1,6 @@
 const ORDER_COLORS = ["#F59E0B", "#3B82F6", "#16A34A"];
 const INVENTORY_COLORS = ["#16A34A", "#F59E0B", "#DC2626"];
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 import { OrdersContext } from "../context/OrdersContext";
 import {
@@ -20,6 +20,31 @@ import styles from "./Dashboard.module.css";
 function Dashboard() {
   const { products } = useContext(ProductsContext);
   const { orders } = useContext(OrdersContext);
+  const monthlySales = orders.reduce((acc, order) => {
+    const date = new Date(order.date).getMonth();
+    acc[date] = (acc[date] || 0) + order.total;
+    return acc;
+  }, {});
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const chartData = months.map((month, index) => {
+    return {
+      month: month,
+      sales: monthlySales[index] || 0,
+    };
+  });
 
   const lowStockProducts = products.filter((item) => item.quantity <= 5);
   const shippedOrders = orders.filter(
@@ -119,6 +144,21 @@ function Dashboard() {
                     <Cell key={entry.name} fill={INVENTORY_COLORS[index]} />
                   ))}
                 </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+        <div className={`${styles.chartCard} ${styles.chartCardFull}`}>
+          <h2>Sales Overview</h2>
+
+          <div className={styles.chartContainer}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={chartData}>
+                <CartesianGrid />
+                <Tooltip formatter={(value) => [`$${value}`, "Sales"]} />
+                <XAxis dataKey="month" tick={{ fontSize: 11 }} interval={0} />
+                <YAxis tickFormatter={(value) => `$${value}`} />
+                <Bar dataKey="sales" fill="#3B82F6" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
